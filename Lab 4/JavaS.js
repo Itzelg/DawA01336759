@@ -16,7 +16,9 @@ function javas(problema){
 		promedio();
 	}else if(problema == 5){
 		 inverso();
-	}
+	}else if(problema == 6){
+        solucion();
+    }
 }
 
 function tablaCuadraCubo(num){
@@ -96,7 +98,17 @@ function inverso(){
     var numinv = "";
     while(num>=0){
         numinv += numein.charAt(num);
-        num--;
     }
     alert("El numero invertido es: " + numinv);
+}
+
+function solucion(){
+    var persona = new Object();
+    persona.edad = 19;
+    persona.nombre =Itzel;
+    var estudiante = new Object();
+    estudiante[persona].curso="BD";
+    alert("La persona ha sido registrada" + persona);
+    window.print(persona);
+
 }
