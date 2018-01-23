@@ -1,10 +1,7 @@
-function hola(){
-   alert("\tBienvenido \n");  
-}
 
 function javas(problema){
 	if(problema == 1){
-		var num = promt ("Dame un número: ");
+		var num = prompt ("Dame un número: ");
 		tablaCuadraCubo(num);
 	}else if(problema == 2){
 		sumaAleatoria();
@@ -16,19 +13,9 @@ function javas(problema){
 		}
 		contador(array);
 	}else if(problema == 4){
-		var column = parseInt(prompt("Dame el número de columnas para tu matriz: ")); 
-		var fila = parseInt(prompt("Dame el número de filas para tu matriz: "));
-		var matriz= new Array();
-		for (var j=0; j<fila; j++){
-			matriz[j] = new Array();
-			for(var i=0; i<column; i++){
-				matriz[i][j] = parseInt(prompt("Dame el número que deseas meter en la fila " + j +":"));
-			}
-		}
-		promedio(matriz);
+		promedio();
 	}else if(problema == 5){
-		 var numin = prompt("Dame un número para invertir:");
-		 inverso(numin);
+		 inverso();
 	}
 }
 
@@ -75,8 +62,16 @@ function contador(array){
     alert("Numeros en el arreglo\nMayores a cero: "+ macero + "\nCeros: " + cero + "\nNegativos: " + neg);
 }
 
-function promedio(matriz){
-	
+function promedio(){
+	var column = parseInt(prompt("Dame el número de columnas para tu matriz: ")); 
+		var fila = parseInt(prompt("Dame el número de filas para tu matriz: "));
+		var matriz= new Array();
+		for (var j=0; j<fila; j++){
+			matriz[j] = new Array();
+			for(var i=0; i<column; i++){
+				matriz[i][j] = parseInt(prompt("Dame el número que deseas meter en la fila " + j +":"));
+			}
+		}
     var arreglo = new Array();
     for(var x = 0; x < matriz.length;x++){
         arreglo[x] = 0;
@@ -95,7 +90,8 @@ function promedio(matriz){
     document.write(table);
 
 }
-function inverso(numin){
+function inverso(){
+	var numin = prompt("Dame un número para invertir:");
     var num = numin.length;
     var numinv = "";
     while(num>=0){
