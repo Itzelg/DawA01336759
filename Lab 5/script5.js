@@ -29,7 +29,7 @@ function validarPassword(){
         alert("¡Contraseña correcta!");
         return 0;
     }else{
-        alert("La contraseña debe tener 6 o más caracteres.");
+        alert("La contraseña es incorrecta.");
         return 0;
     }
     alert("Error")
@@ -54,13 +54,13 @@ function productos(){
     chocolates = parseInt(chocolates);
     gomitas = parseInt(gomitas);
     paletas = parseInt(paletas)
-    if(chocolates > 20){
+    if(chocolates > 100){
         alert("No hay suficientes chocolates en el almacen.");
         return;
-    }else if(gomitas > 30){
+    }else if(gomitas > 100){
         alert("No hay suficientes gomitas en el almacen.");
         return;
-    }else if(paletas > 40){
+    }else if(paletas > 100){
         alert("No hay suficientes paletas en el almacen");
         return;
     }
