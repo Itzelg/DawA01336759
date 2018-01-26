@@ -9,19 +9,51 @@
     <section>
     	<h2>Validar passwords</h2>
     	<header>
-							<h3>Ingresar contraseña</h3>
-							<p>
-								La contraseña debe tener 6 o más caracteres, al menos 1 mayúscula y al menos 1 número.
-							</p>
-						</header>
-						<form name="clave" onsubmit="validarContrasena()">
-							Contraseña:
-							<input name="clave1" type="password"/><br/>
-							<p> </p>
-							Verificar contraseña:
-							<input name="clave2" type="password"/><br/>
-							<input type="submit">
-						</form>
+			<h3>Ingresar contraseña</h3>
+				<p>La contraseña debe tener 6 o más caracteres, al menos 1 mayúscula y al menos 1 número.</p>
+		</header>
+			<form name="clave" onsubmit="validarPassword()">
+				Contraseña:
+				<input name="clave1" type="password"/><br/>
+				<p> </p>
+				Verificar contraseña:
+				<input name="clave2" type="password"/><br/>
+				<input type="submit">
+			</form>
+    </section>
+
+    <section>
+    	<h2>Venta de productos</h2>
+		<form name="numproductos" onsubmit="productos()" class="wrapper">
+			<div class="inner">
+				<div class="highlights">
+					<h3>Chocolates</h3>
+					</header>
+					<p>Precio: $20</p>
+					IVA: 10%<br/>
+					¿Cuantos chocolates quieres?<br/>
+					Chocolates: <input name="Chocolates" type="text">
+					<input  type="submit">
+						
+				<div class="content">
+					<h3>Gomitas</h3>
+					<p>Precio: $15</p>
+					IVA: 10%<br/>
+					¿Cuantas gomitas quieres?<br/>
+					Gomitas: <input name="Gomitas" type="text">
+					<input  type="submit">
+						
+				<div class="content">
+					<h3>Paletas</h3>
+					<p>Precio: $10</p>
+					IVA: 10%<br/>
+					¿Cuantas paletas quieres?<br/>
+					Paletas: <input name="paletas" type="text"/>
+					<input  type="submit">
+    </section>
+
+    <section>
+    	
     </section>
 
     <section>
@@ -44,7 +76,7 @@
   </section>
 
 
-        <script type="text/javascript" src="JavaS.js"></script>
+        <script src="script5.js"></script>
     
     <body>
 <html>
