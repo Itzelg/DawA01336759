@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<title>Laboratorio 6: Documentos dinámicos con Javascript </title>
+	<meta charset="UTF-8">
+
+<head>
+	<link rel="stylesheet" href="Lab6.css">
+</head>
+<body id="body">
+	<address>Itzel Gil Porres A01336759</address>
+	<h1>Documentos dinámicos con Javascript</h1>
+	<article>
+		<p> Pase el mouse sobre las opciones para cambiar el texto. </p>
+		<div class="btn-group" role="group" aria-label="Basic example">
+			<button type="button" class="btn btn-secondary" id="italica">Italicas</button>
+			<button type="button" class="btn btn-secondary" id="negrita">Negritas</button>
+			<button type="button" class="btn btn-secondary" id="mayus">SmallMayus</button>
+			<button type="button" class="btn btn-secondary" id="normal">Normal</button>
+		</div>
+	</article>
+	<article class="cuestionario" id="cuestionario">
+		<h2>Cuestionario<h2>
+		<h3>¿Cuáles son las diferencias entre los posibles valores de la propiedad position?</h3>
+		<ul>
+			<li>Static</li>
+			<li>Absolute</li>
+			<li>Fixed</li>
+			<li>Relative</li>
+			<li>Sticky</li>
+			<li>Initial</li>
+			<li>Inherit</li>
+		</ul>
+		<h3>¿Cuáles son los valores estándar para la propiedad visibility?</h3>
+		<ul>
+			<li>Visible:	El elemento es visible.</li> 
+			<li>Hidden:		El elemento no es visible</li>
+			<li>Collapse:	Cuando es usado en una tabla el elemento no es visible.</li>
+			<li>Initial:	Inicializa esta propiedad como default.</li>
+			<li>Inherit:	Hereda la propiedad.</li>
+			
+		</ul>
+		<h3>¿Qué es el zIndex y para qué sirve?</h3>
+		<p>Es la posicion de un objeto en el eje z.</p>
+	</article>
+	<div>
+		<button onclick="setTimeout(tiempo, 3000)">Try</button>
+	</div>
+	
+	<section>
+            <h2>Referencias</h2>
+            <p><a href="https://www.w3schools.com/jsref/prop_style_position.asp">Style position Property</a></p>
+            <p><a href="https://www.w3schools.com/jsref/prop_style_visibility.asp">Style visibility Property</a></p>
+            <p><a href="https://www.w3schools.com/cssref/pr_pos_z-index.asp">CSS z-index Property</a></p>
+
+  	</section>
+</body>
+<script src="Lab6.js"></script>
+</html>
