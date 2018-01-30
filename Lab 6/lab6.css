@@ -129,3 +129,10 @@ body:after {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+#div1 {
+    width: 350px;
+    height: 270px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}
