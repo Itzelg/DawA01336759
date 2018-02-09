@@ -4,7 +4,7 @@
 		<title>Lab 9 - Ejercicio 2</title>
 		<meta charset="utf-8" />
 		
-		<link rel="stylesheet" href="Lab9.css">
+		<link rel="stylesheet" href="../assets/css/main.css" />
 	</head>
 	<body id="body">
 
@@ -21,5 +21,11 @@
 					?>
 				</div>
 			</section>
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+			<script src="script.js"></script>
 	</body>
 </html>
