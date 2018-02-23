@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Lab 11: Manejo de formas con php y modelo de capas</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+    <body class="is-preload">
+			
+        <address>Itzel Gil Porres A01336759</address>
+	       
+		
+    
+    <section id="banner">
+				<div class="inner">
+					<h1>Manejo de formas con php y modelo de capas</h1>
+					<br/>
+				</div>
+			</section>
+			<section class="wrapper">
+				<div class="inner">
+					<div class="highlights">
+						<section>
+							<div class="content">
+								<header>
+									<h2><a href="entry.php">PHP</a></h2>
+								</header>
+								<p>Pagina realizada en PHP con validación de entradas.</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<h3>¿Por qué es una buena práctica separar el controlador de la vista?</h3>
+								</header>
+								<p>Porque facilita la funcionalidad, mantenibilidad y escalabilidad del sistema, de forma 
+									comoda y sencilla, mejora el aspecto de un programa, mejora su algoritmo, y a la vez podemos mezclar lenguajes de programación en el mismo código.
+								</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<h3>Aparte de los arreglos $_POST y $_GET, ¿qué otros arreglos están predefinidos en php y cuál es su función?</h3>
+								</header>
+								<p>
+									<ol>
+										<li>
+											$GLOBALS: Contiene todas las variables globales
+										</li>
+										<li>
+											$_SERVER: Contiene información como cabeceras, rutas y ubicaciones de script.
+										</li>
+										<li>
+											$_FILES: Elementos subidos al script a través del metodo POST.
+										</li>
+										<li>
+											$_COOKIE: Contiene variables pasadas al script actual a través de cookies.
+										</li>
+										<li>
+											$_SESSION: Contiene variables de sesión disponibles.
+										</li>
+										<li>
+											$_REQUEST: Contiene el contenido de $_GET, $_POST y $_COOKIE.
+										</li>
+										<li>
+											$_ENV: Variables de entorno pasadas al script actual.
+										</li>
+									</ol>
+								</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<h3>Explora las funciones de php, y describe 2 que no hayas visto en otro lenguaje y que llamen tu atención.</h3>
+								</header>
+								<p>
+									<ul>
+										<li>
+											base64_decode - Decodifica datos codificados con MIME base64
+										</li>
+										<li>
+											chmod - Cambia el modo de un fichero
+										</li>
+									</ul>
+								</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<h3>¿Qué es XSS y cómo se puede prevenir?</h3>
+								</header>
+								<p>
+									<ul>
+										<li>
+											Es un ataque en donde el hacker inyecta codigo malicioso en el cliente para que afecte el output de tu página web.
+											Las aplicaciones que no tienen la manera de escapar del output al ataque son vulnerables.
+										</li>
+										<li>
+											Se previene utilizando funciones como htmlspecialchars() o htmlentities() que previenen el output de la pagina.
+											Ambas funciones de php convierten chars problematicos en entidades de HTML haciendo que el codigo inyectado sea inofensivo.
+										</li>
+									</ul>
+								</p>
+							</div>
+						</section>
+						
+					</div>
+				</div>
+			</section>
+    
+    			<footer id="footer">
+					<div class="inner">
+						<div class="content">
+							<section>
+                                <h2>Referencias</h2>
+                                    <p><a href="http://php.net/manual/es/language.variables.superglobals.php">PHP</a></p>
+                                    <p><a href="ttp://php.net/manual/es/indexes.functions.php">PHP</a></p>
+                                    <p><a href="hhttps://www.redeszone.net/2010/10/26/ataques-xss-y-javascript-injection-como-evitar-los-ataques-xss-y-la-inyeccion-javascript-volumen-i/">XSS</a></p>
+                                    <p><a href="https://imasters.com.br/infra/seguranca/5-formas-para-prevenir-os-ataques-xss/?trace=1519021197&source=single">XSS</a></p>
+                            </section>
+						</div>
+					</div>
+			</footer>
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+	</body>
+</html>
