@@ -1,0 +1,57 @@
+Itzel Gil Porres A01336759
+
+Laboratorio 12: Creación de Constraints Para Instrumentar Integridad Referencial en SQL Server
+
+Revisa el contenido de la tabla materiales y determina si existe alguna inconsistencia en el contenido de la tabla. ¿Cuál es? ¿A qué se debe? 
+Sí existe una inconsistencia, no hay llave primaria por lo que deja que existan datos con la misma clave.
+
+¿Qué ocurrió? 
+Hay un error debido a que existe otro registro con la misma clave.
+
+¿Qué información muestra esta consulta? 
+Muestra una tabla especificando el contraint y la llave primaria.
+
+¿Qué sentencias utilizaste para definir las llaves primarias? 
+ALTER TABLE Materiales add constraint llaveMateriales PRIMARY KEY (Clave)
+ALTER TABLE Proveedores add constraint llaveProveedores PRIMARY KEY (RFC)
+ALTER TABLE Proyectos add constraint llaveProyectos PRIMARY KEY (Numero)
+
+¿Qué sentencias utilizaste para definir este constrait? 
+ALTER TABLE Entregan add constraint llaveEntregan PRIMARY KEY (Clave, RFC, Numero, Fecha)
+
+
+¿Qué particularidad observas en los valores para clave, rfc y numero? 
+En el registro se acepta el 0 y la fecha impide que se repitan agrupados.
+
+¿Cómo responde el sistema a la inserción de este registro? 
+No marca ningún error.
+
+¿Qué significa el mensaje que emite el sistema? 
+The ALTER TABLE statement conflicted with the FOREIGN KEY constraint
+No me permitía poner la llave foránea, ya que había un registro en Entregan.
+
+¿Qué significado tiene la sentencia anterior? 
+Los datos no eran consistentes.
+
+¿Qué significan las columnas de esas consultas?
+Todos los datos de las llaves..
+
+¿Qué uso se le está dando a GETDATE()? 
+Le asigna la fecha de hoy.
+
+¿Tiene sentido el valor del campo de cantidad? 
+No porque si la cantidad es 0, no tiene caso guardarlo.
+
+¿Cómo responde el sistema? 
+The INSERT statement conflicted with the CHECK constraint "Cantidad". The conflict occurred in database "a1336759", table "a1336759.Entregan", column 'Cantidad'.
+No deja por la declaración anterior.
+
+¿Qué significa el mensaje? 
+Que hay un conflicto en la columna de cantidad porque es un cero el dato.
+
+Integridad referencial
+La integridad referencial protege las relaciones entre tablas cuando se crean o se eliminan filas, se basa en las relaciones entre claves, y garantiza que los valores de clave sean coherentes en todas las tablas.
+
+
+Referencia:
+https://technet.microsoft.com/es-es/library/ms184276(v=sql.105).aspx
