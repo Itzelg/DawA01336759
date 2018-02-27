@@ -1,3 +1,7 @@
+<?php include("partials/_header.html"); ?>
+<?php include("partials/_top_bar.html"); ?>
+<?php include("html/entry.html");?>
+<?php include("partials/_footer.html"); ?>
 <?php
     $usernum = isset($_POST["user"]["number"]) && is_numeric($_POST["user"]["number"]);
     $name = isset($_POST["user"]["name"]) && !is_numeric($_POST["user"]["name"]);
@@ -23,7 +27,3 @@
         }
     }
 ?>
-<?php include("partials/_header.html"); ?>
-<?php include("partials/_top_bar.html"); ?>
-<?php include("html/entry.html");?>
-<?php include("partials/_footer.html"); ?>
