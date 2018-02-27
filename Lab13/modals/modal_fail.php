@@ -16,10 +16,10 @@
                 Ingresar un número de usuario.
             </li>
             <li>
-                Llenar todos los datos para registrar un visitante nuevo.
+                Llenar todos los datos para registrar un empleado nuevo.
             </li>
             <li>
-                Llenar al menos un campo y buscar un usuario.
+                Llenar al menos un campo y buscar un empleado.
             </li>
         </ol>
         </div>

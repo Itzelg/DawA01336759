@@ -12,7 +12,7 @@ echo '
 
         <!-- Modal body -->
         <div class="modal-body">
-          <p><b>Nombre(s): </b>'.$_POST["user"]["name"] .'</p>
+          <p><b>Nombre: </b>'.$_POST["user"]["name"] .'</p>
           <p><b>Apellido Paterno: </b>'.$_POST["user"]["paternal"].'</p>
           <p><b>Apellido Materno: </b>'.$_POST["user"]["maternal"].'</p>
           <p><b>Fecha de Nacimiento: </b>'.$_POST["user"]["birthday"].'</p>

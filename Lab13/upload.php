@@ -23,6 +23,7 @@ if($try){
             echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
         } else {
             echo "Sorry, there was an error uploading your file.";
+            include("_footer.html");
         }
     }
 }
