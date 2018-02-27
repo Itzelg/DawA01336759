@@ -1,5 +1,5 @@
 <?php
-$target_dir = imag/";
+$target_dir = uploads/";
 $try = $_FILES["fileToUpload"]["name"] != null;
 if($try){
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);

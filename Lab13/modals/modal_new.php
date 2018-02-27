@@ -17,7 +17,7 @@ echo '
           <p><b>Apellido Materno: </b>'.$_POST["user"]["maternal"].'</p>
           <p><b>Fecha de Nacimiento: </b>'.$_POST["user"]["birthday"].'</p>
           <p><b>Genero: </b>'.$_POST["user"]["gender"].'</p>
-          <p><b>Grado de Estudio: </b>'.$_POST["user"]["user_grade"].'</p>
+          <p><b>Rol en empresa: </b>'.$_POST["user"]["user_grade"].'</p>
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
