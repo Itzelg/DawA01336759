@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Lab 13: Manejo de sesiones con php</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+    <body class="is-preload">
+
+        <address>Itzel Gil Porres A01336759</address>
+
+
+
+    <section id="banner">
+				<div class="inner">
+					<h1>Manejo de sesiones con php</h1>
+					<br/>
+				</div>
+			</section>
+			<section class="wrapper">
+				<div class="inner">
+					<div class="highlights">
+						<section>
+							<div class="content">
+								<header>
+									<h2><a href="entry.php">PHP</a></h2>
+								</header>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<h3>¿Por qué es importante hacer un session_unset() y luego un session_destroy()?</h3>
+								</header>
+								<p>Para poder eliminar correctamente las variables globales y después destruir la sesión del usuario.</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<h3>¿Cuál es la diferencia entre una variable de sesión y una cookie?</h3>
+								</header>
+								<p>Una variable de sesión es una variable que se almacena mientras la sesión del usuario está abierta, mientras que una variable cookie se almacena en el disco duro del usuario por lo que permanece más tiempo que la variable de sesión.</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<h3>¿Qué técnicas se utilizan en sitios como facebook para que el usuario no sobreescriba sus fotos en el sistema de archivos cuando sube una foto con el mismo nombre?</h3>
+								</header>
+								<p>Facebook revisa las variables de sesión para ver si un archivo se repite o no.</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<h3>¿Qué es CSRF y cómo puede prevenirse?</h3>
+								</header>
+								<p>
+								Es un ataque en el cual el atacante provoca que el usuario ejecute una acción de forma no intencionada en una aplicación en la que había iniciado sesión.
+								Para prevenirlo se pueden utilizar tokens de sesión, frameworks con soporte ya instalado como Spring, o utilizando otros programas para proteger aplicaciones web.
+								</p>
+							</div>
+						</section>
+
+					</div>
+				</div>
+			</section>
+
+    			<footer id="footer">
+					<div class="inner">
+						<div class="content">
+							<section>
+                                <h2>Referencias</h2>
+                                    <p><a href="http://php.net/manual/en/function.session-unset.php">session_unset()</a></p>
+                                    <p><a href="http://php.net/manual/en/function.session-destroy.php">session_destroy()</a></p>
+                                    <p><a href="http://idesweb.es/proyecto/proyecto-prac09-php-cookies-sesiones">Variables</a></p>
+                                    <p><a href="https://diego.com.es/ataques-csrf-cross-site-request-forgery-en-php">CSRF</a></p>
+                            </section>
+						</div>
+					</div>
+			</footer>
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+	</body>
+</html>
