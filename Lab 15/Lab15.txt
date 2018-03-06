@@ -1,0 +1,485 @@
+Itzel Gil Porres A01336759
+
+Laboratorio 15 : Creación de consultas utilizando SQL Básico
+
+Reporte
+
+
+Consulta de un tabla completa 
+
+Algebra relacional. 
+materiales 
+
+SQL 
+select * from materiales 
+SELECT * from Materiales
+
+Tabla materiales con 44 renglones
+
+
+Selección 
+
+Algebra relacional. 
+SL{clave=1000}(materiales) 
+
+SQL 
+SELECT * FROM Materiales
+WHERE Clave=1000
+
+Clave  Descripción    Costo
+1000   Varilla 3/16   100.00
+
+
+Proyección 
+
+Algebra relacional. 
+PR{clave,rfc,fecha} (entregan) 
+
+SQL 
+SELECT Clave, RFC, Fecha FROM Entregan
+
+Tabla con 132 renglones
+
+
+Reunión Natural 
+
+Algebra relacional. 
+entregan JN materiales 
+
+SQL 
+SELECT * FROM Materiales,Entregan
+where Materiales.clave = Entregan.clave
+
+Tabla con 132 renglones
+
+Si algún material no ha se ha entregado ¿Aparecería en el resultado de esta consulta? 
+No, debido a que si no se ha entregado no debería de estar en la tabla "Entregan".
+
+
+
+Reunión con criterio específico 
+
+Algebra relacional. 
+entregan JN{entregan.numero <= proyectos.numero} proyectos 
+
+SQL 
+SELECT * FROM Entregan,Proyectos
+WHERE entregan.numero <= proyectos.numero
+
+Tabla con 500 renglones
+
+
+
+Unión (se ilustra junto con selección) 
+
+Algebra relacional. 
+SL{clave=1450}(entregan) UN SL{clave=1300}(entregan) 
+
+SQL 
+(SELECT * FROM entregan WHERE clave=1450)
+union
+(SELECT * FROM entregan WHERE clave=1300)
+
+Tabla con 3 renglones
+
+¿Cuál sería una consulta que obtuviera el mismo resultado sin usar el operador Unión? Compruébalo. 
+SELECT * FROM entregan WHERE clave=1450 OR clave=1300
+Tabla con los mismos 3 renglones.
+
+
+Intersección (se ilustra junto con selección y proyección) 
+
+Algebra relacional. 
+PR{clave}(SL{numero=5001}(entregan)) IN PR{clave}(SL{numero=5018}(entregan)) 
+
+SQL 
+Nota: Debido a que en SQL server no tiene definida alguna palabra reservada que nos permita hacer esto de una manera entendible, veremos esta sección en el siguiente laboratorio con el uso de Subconsultas. Un ejemplo de un DBMS que si tiene la implementación de una palabra reservada para esta función es Oracle, en él si se podría generar la consulta con una sintaxis como la siguiente: 
+
+(SELECT clave fROM entregan WHERE numero=5001)
+intersect
+(SELECT clave FROM entregan WHERE numero=5018)
+
+Clave
+1010
+
+
+Diferencia (se ilustra con selección ) 
+
+Algebra relacional. 
+entregan - SL{clave=1000}(entregan) 
+
+SQL 
+(select * from entregan) 
+minus 
+(select * from entregan where clave=1000) 
+
+Nuevamente, "minus" es una palabra reservada que no está definida en SQL Server, define una consulta que regrese el mismo resultado. 
+
+(SELECT * FROM entregan WHERE NOT clave=1000)
+Tabla con 129 renglones
+
+
+Producto cartesiano 
+
+Algebra relacional. 
+entregan X materiales 
+
+SQL 
+SELECT * FROM Entregan,Materiales
+
+Tabla con 5808 renglones.
+
+¿Cómo está definido el número de tuplas de este resultado en términos del número de tuplas de entregan y de materiales? 
+El número de renglones en entregan por el número de renglones en materiales. (132+44=5808)
+
+
+Construcción de consultas a partir de una especificación 
+
+Plantea ahora una consulta para obtener las descripciones de los materiales entregados en el año 2000. 
+
+Recuerda que la fecha puede indicarse como '01-JAN-2000' o '01/01/00'. 
+
+Importante: Recuerda que cuando vayas a trabajar con fechas, antes de que realices tus consultas debes ejecutar la instrucción "set dateformat dmy". Basta con que la ejecutes una sola vez para que el manejador sepa que vas a trabajar con ese formato de fechas. 
+
+SET DATEFORMAT dmy
+SELECT Descripcion
+FROM Materiales, Entregan
+WHERE Materiales.Clave=Entregan.Clave AND
+  Fecha BETWEEN '01/01/2000' AND '31/12/2000'
+  
+¿Por qué aparecen varias veces algunas descripciones de material? 
+Porque esta consulta nos muestra todas las entregas con sus fechas sin importar que se repitan.
+
+
+Uso del calificador distinct 
+
+En el resultado anterior, observamos que una misma descripción de material aparece varias veces. 
+
+Agrega la palabra distinct inmediatamente después de la palabra select a la consulta que planteaste antes. 
+SET DATEFORMAT dmy
+SELECT DISTINCT Descripcion
+FROM Materiales, Entregan
+WHERE Materiales.Clave=Entregan.Clave AND
+  Fecha BETWEEN '01/01/2000' AND '31/12/2000'
+  
+  Tabla con 22 renglones.
+
+¿Qué resultado obtienes en esta ocasión? 
+Ya no aparecen nombres iguales dentro de la tabla.
+
+
+Ordenamientos. 
+
+Si al final de una sentencia select se agrega la cláusula 
+
+order by campo [desc] [,campo [desc] ...] 
+
+donde las partes encerradas entre corchetes son opcionales (los corchetes no forman parte de la sintaxis), los puntos suspensivos indican que pueden incluirse varios campos y la palabra desc se refiere a descendente. Esta cláusula permite presentar los resultados en un orden específico. 
+
+Obtén los números y denominaciones de los proyectos con las fechas y cantidades de sus entregas, ordenadas por número de proyecto, presentando las fechas de la más reciente a la más antigua. 
+
+SELECT p.Numero, p.Denominacion, e.Fecha, e.Cantidad
+FROM proyectos p, entregan
+WHERE p.Numero=e.Numero
+ORDER BY  e.Fecha DESC
+
+Tabla con 132 renglones.
+
+
+Operadores de cadena 
+
+SELECT * FROM Materiales WHERE Descripcion LIKE 'Si%' 
+
+¿Qué resultado obtienes? 
+Tabla con 2 renglones
+Clave	Descripción	Costo
+1120	Sillar rosa	100.00
+1130	Sillar gris	110.00
+
+Explica que hace el símbolo '%' 
+Busca cadena que contenga caracteres que sean parecidos a los que se insertaron.
+
+¿Qué sucede si la consulta fuera : LIKE 'Si' ? 
+No regresa nada porque ninguna descripción es solo 'Si'.
+
+¿Qué resultado obtienes? 
+Ninguna tabla.
+
+Explica a qué se debe este comportamiento.
+Ninguna descripción es solo 'Si'.
+
+Otro operador de cadenas es el de concatenación, (+, +=) este operador concatena dos o más cadenas de caracteres. 
+Su sintaxis es : Expresión + Expresión. 
+Un ejemplo de su uso, puede ser: 
+SELECT (Apellido + ', ' + Nombre) as Nombre FROM Personas; 
+
+DECLARE @foo varchar(40); 
+DECLARE @bar varchar(40); 
+SET @foo = '¿Que resultado'; 
+SET @bar = ' ¿¿¿??? ' 
+SET @foo += ' obtienes?'; 
+PRINT @foo + @bar; 
+
+¿Qué resultado obtienes de ejecutar el siguiente código? 
+¿Que resultado obtienes? ¿¿¿???
+
+¿Para qué sirve DECLARE? 
+Declarar variables
+
+¿Cuál es la función de @foo? 
+Es el nombre de una variable con tipo de dato varchar
+
+¿Que realiza el operador SET? 
+Le da un valor a una variable
+
+
+SELECT RFC FROM Entregan WHERE RFC LIKE '[A-D]%'; 
+
+Tabla con 72 renglones.
+La linea ingresada anteriormente te da los elementos con RFC que al principio tengan letras de la A a la D y después lo demás.
+
+SELECT RFC FROM Entregan WHERE RFC LIKE '[^A]%'; 
+
+Tabla con 144 renglones.
+Nos muestra los elementos con RFC que no tengan A al principio.
+
+SELECT Numero FROM Entregan WHERE Numero LIKE '___6'; 
+
+Tabla con 14 renglones.
+Regresa los numeros de los elementos que contengan un 6 al final.
+
+
+Operadores Lógicos. 
+
+SELECT Clave,RFC,Numero,Fecha,Cantidad 
+FROM Entregan 
+WHERE Numero Between 5000 and 5010; 
+
+Tabla con 60 renglones.
+
+¿Cómo filtrarías rangos de fechas? 
+Con un BETWEEN ' ' AND ' ' indicando el intervalo de fechas que deseas.
+
+EXISTS Se utiliza para especificar dentro de una subconsulta la existencia de ciertas filas. 
+
+SELECT RFC,Cantidad, Fecha,Numero 
+FROM [Entregan] 
+WHERE [Numero] Between 5000 and 5010 AND 
+Exists ( SELECT [RFC] 
+FROM [Proveedores] 
+WHERE RazonSocial LIKE 'La%' and [Entregan].[RFC] = [Proveedores].[RFC] ) 
+
+Tabla con 16 renglones
+
+¿Qué hace la consulta? 
+Nos muestra las filas donde la razón social inicie con "La"
+
+¿Qué función tiene el paréntesis ( ) después de EXISTS? 
+Indica una subconsulta que se realizará.
+
+Tomando de base la consulta anterior del EXISTS, realiza el query que devuelva el mismo resultado, pero usando el operador IN 
+
+SELECT RFC,Cantidad, Fecha,Numero
+FROM [Entregan]
+WHERE [Numero] Between 5000 and 5010 AND
+RFC IN ( SELECT [RFC]
+FROM [Proveedores]
+WHERE RazonSocial LIKE 'La%' and [Entregan].[RFC] = [Proveedores].[RFC] ) 
+
+Tomando de base la consulta anterior del EXISTS, realiza el query que devuelva el mismo resultado, pero usando el operador NOT IN Realiza un ejemplo donde apliques algún operador : ALL, SOME o ANY 
+
+SELECT RFC,Cantidad, Fecha,Numero
+FROM [Entregan]
+WHERE [Numero] Between 5000 and 5010 AND
+RFC NOT IN ( SELECT [RFC]
+FROM [Proveedores]
+WHERE RazonSocial LIKE 'La%' and [Entregan].[RFC] = [Proveedores].[RFC] ) 
+
+
+FROM Entregan
+WHERE Clave = ALL(SELECT Clave FROM Entregan WHERE Clave = 1000)
+
+¿Qué hace la siguiente sentencia? Explica porque 
+SELECT TOP 2 * FROM Proyectos 
+Nos muestra los primeros 2 renglones de la tabla de Proyectos.
+
+¿Qué sucede con la siguiente consulta? Explica porque 
+SELECT TOP Numero FROM Proyectos 
+No muestra nada, debido a que ocurre un error cuando no se indica cuantos elementos queremos obtener.
+
+
+Modificando la estructura de un tabla existente. 
+
+¿Qué consulta usarías para obtener el importe de las entregas es decir, el total en dinero de lo entregado, basado en la cantidad de la entrega y el precio del material y el impuesto asignado? 
+SELECT Denominacion, SUM(Costo*Cantidad*(1+PorcentajeImpuesto/100)) as "Total A Pagar"
+FROM Materiales M, Entregan E, Proyectos P
+WHERE E.Clave = M.Clave AND E.Numero = P.Numero
+GROUP BY Denominacion
+
+
+Creación de vistas 
+
+Comprueba lo anterior, creando vistas para cinco de las consultas que planteaste anteriormente en la práctica . Posteriormente revisa cada vista creada para comprobar que devuelve el mismo resultado. 
+
+  1
+CREATE VIEW Top_2_Proyectos("Numero", "Denominacion") as
+SELECT TOP 2 * FROM Proyectos 
+
+2
+CREATE VIEW Razon_Social_La("RFC","Cantidad","Fecha","Numero") as
+SELECT RFC,Cantidad, Fecha,Numero
+FROM [Entregan]
+WHERE [Numero] Between 5000 and 5010 AND
+Exists ( SELECT [RFC]
+FROM [Proveedores]
+WHERE RazonSocial LIKE 'La%' and [Entregan].[RFC] = [Proveedores].[RFC] ) 
+
+3
+CREATE VIEW Clave_NOT_1000("Clave","RFC","Numero","Fecha","Cantidad") as
+(select * from entregan where NOT clave=1000)
+
+4
+CREATE VIEW Clave_1450("Clave","RFC","Numero","Fecha","Cantidad") as
+select * from entregan where clave=1450
+
+5
+CREATE VIEW Descripcion_Materiales_2000("Descripcion") as
+select DISTINCT descripcion
+from materiales, entregan 
+where materiales.clave=entregan.clave AND 
+Fecha BETWEEN '01/01/00' AND '31/12/00';
+
+A continuación se te dan muchos enunciados de los cuales deberás generar su correspondiente consulta. 
+
+En el reporte incluye la sentencia, una muestra de la salida (dos o tres renglones) y el número de renglones que SQL Server reporta al final de la consulta. 
+
+A continuación se te dan muchos enunciados de los cuales deberás generar su correspondiente consulta. 
+
+Los materiales (clave y descripción) entregados al proyecto "México sin ti no estamos completos". 
+
+select m.clave, descripcion
+from materiales m, proyectos p, entregan e
+where m.clave = e.clave and e.numero = p.numero 
+and p.denominacion = 'Mexico sin ti no estamos completos'
+
+ 3 renglones
+1030	Varilla 4/33
+1230	Cemento 
+1430	Pintura B1022
+
+
+Los materiales (clave y descripción) que han sido proporcionados por el proveedor "Acme tools". 
+
+select m.clave, descripcion
+from materiales m, entregan e, proveedores pr
+where m.clave = e.clave and pr.rfc = e.rfc
+and pr.razonSocial = 'Acme tools'
+ 0 renglones
+
+
+El RFC de los proveedores que durante el 2000 entregaron en promedio cuando menos 300 materiales. 
+
+select rfc
+from entregan
+where fecha between '01/01/00' and '31/12/00'
+group by rfc
+having avg(cantidad)>=300
+
+7 renglones
+BBBB800101   
+CCCC800101   
+DDDD800101   
+
+El Total entregado por cada material en el año 2000. 
+
+select descripcion, sum(cantidad) as 'total entregas'
+from entregan e, materiales m
+where e.clave = m.clave and fecha between '01/01/00' and '31/12/00'
+group by descripcion
+
+22 renglones
+Arena	366.00
+Block	466.00
+Cantera rosa	162.00
+
+La Clave del material más vendido durante el 2001. (se recomienda usar una vista intermedia para su solución)
+
+select top 1 clave
+from entregan 
+where fecha between '01/01/01' and '31/12/01'
+group by clave
+order by sum(cantidad) desc
+
+1 renglon
+1020
+
+Productos que contienen el patrón 'ub' en su nombre.
+
+select descripcion
+from materiales
+where descripcion like '%ub%'
+
+12 renglones
+Recubrimiento P1001
+Recubrimiento P1010
+Recubrimiento P1019
+
+Denominación y suma del total a pagar para todos los proyectos. 
+
+select denominacion, sum(costo*cantidad*(1+porcentajeImpuesto/100)) as 'total a pagar'
+from materiales m, entregan e, proyectos p
+where e.clave = m.clave and e.numero = p.numero
+group by denominacion
+
+20 renglones
+Ampliación de la carretera a la huasteca	742461.1940000000
+Aztecón	150200.2190000000
+CIT Campeche	161603.0820000000
+
+Denominación, RFC y RazonSocial de los proveedores que se suministran materiales al proyecto Televisa en acción que no se encuentran apoyando al proyecto Educando en Coahuila. (Solo usando vistas)
+
+create view a as
+select denominacion, e.RFC, pr.RazonSocial
+from proyectos p, entregan e, proveedores pr
+where denominacion = 'Educando en coahuila'
+and e.numero = p.numero and pr.RFC = e.RFC
+
+4 renglones
+Educando en Coahuila	EEEE800101   	Alvin
+Educando en Coahuila	HHHH800101   	Tubasa
+Educando en Coahuila	HHHH800101   	Tubasa
+Educando en Coahuila	AAAA800101   	La fragua
+
+Denominación, RFC y RazonSocial de los proveedores que se suministran materiales al proyecto Televisa en acción que no se encuentran apoyando al proyecto Educando en Coahuila. (Sin usar vistas, utiliza not in, in o exists) 
+
+select denominacion, e.RFC, pr.RazonSocial
+from proyectos p, entregan e, proveedores pr
+where denominacion = 'Educando en coahuila'
+and e.numero = p.numero and pr.RFC = e.RFC
+
+4 renglones
+Educando en Coahuila	EEEE800101   	Alvin
+Educando en Coahuila	HHHH800101   	Tubasa
+Educando en Coahuila	HHHH800101   	Tubasa
+Educando en Coahuila	AAAA800101   	La fragua
+
+Costo de los materiales y los Materiales que son entregados al proyecto Televisa en acción cuyos proveedores también suministran materiales al proyecto Educando en Coahuila.  
+
+select costo, descripcion
+from proyectos p, entregan e, materiales m, proveedores pr
+where denominacion = 'Televisa%' and  pr.RazonSocial LIKE 'Educando en Coahuila'
+and e.numero = p.numero and m.clave = e.clave
+
+0 renglones
+
+Nombre del material, cantidad de veces entregados y total del costo de dichas entregas por material de todos los proyectos. 
+
+select descripcion, count(e.clave) as "Cantidad de veces entregado" , sum(e.Cantidad * m.Costo) as "Total del costo"
+from entregan e, materiales m
+where m.Clave = e.Clave
+group by descripcion
+
+42 renglones
+Arena	3	213400.0000
+Block	3	50640.0000
+Cantera amarilla	3	172500.0000
