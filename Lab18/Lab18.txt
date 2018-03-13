@@ -88,11 +88,6 @@ Resultado
 
 34 filas
  
- 
-Utilizando la sentencia 
-INSERT INTO tabla VALUES (valorcolumna1, valorcolumna2, [...] , valorcolumnan) ; 
- 
-Considerando que los valores de tipos CHAR y VARCHAR deben ir encerrados entre apóstrofes, los valores numéricos se escriben directamente y los de fecha, como '1-JAN-00' para 1o. de enero del 2000, inserta cinco nuevos materiales.
 Inserta cinco nuevos materiales.
 
 INSERT INTO Materiales VALUES (3839, 'Vidrio', 500.00, 3.998);
