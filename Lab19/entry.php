@@ -1,7 +1,7 @@
 <?php include("partials/_header.html"); ?>
 <?php include("html/entry.html");?>
 <?php include("partials/_footer.html"); ?>
-<?php include("regex.php"); ?>
+<?php include("vali.php"); ?>
 <?php include("../partials/_nav.html");?>
 <?php include("../partials/_lateral.html");?>
 
