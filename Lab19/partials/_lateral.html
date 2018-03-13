@@ -1,0 +1,84 @@
+<div class="sidebar" data-color="blue" data-image="../img/sidebar-1.jpg">
+    <div class="logo">
+        <a href="../empresas/empresas.php" class="simple-text" value="verEmpresa">MAXICAL</a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li>
+                <a data-toggle="collapse" href="#formsExamples">
+                    <i class="material-icons">content_paste</i>
+                    <p> Inventarios
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="formsExamples">
+                    <ul class="nav">
+                        <li <?php if($currentPage == "Catálogo"){echo "class=\"active\" ";}?>>
+                            <a href="../catalogo/catalogo.php">
+                                <i class="material-icons">assignment</i>
+                                <span class="sidebar-normal">Catálogo</p>
+                            </a>
+                        </li>
+                        <li <?php if($currentPage == "Bodegas"){echo "class=\"active\" ";}?>>
+                            <a href="../bodegas/bodegas.php">
+                                <i class="material-icons">local_shipping</i>
+                                <span class="sidebar-normal">Bodegas</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <div class="separa"></div>
+
+            <li <?php if($currentPage == "Compras"){echo "class=\"active\" ";}?>>
+                <a href="../compras/compras.php">
+                    <i class="material-icons">add_shopping_cart</i>
+                    <p>Compras</p>
+                </a>
+            </li>
+            <li <?php if($currentPage == "Ventas"){echo "class=\"active\" ";}?>>
+                <a href="../ventas/ventas.php">
+                    <i class="material-icons">attach_money</i>
+                    <p>Ventas</p>
+                </a>
+            </li>
+
+            <div class="separa"></div>
+
+            <li <?php if($currentPage == "Clientes"){echo "class=\"active\" ";}?>>
+                <a href="../clientes/clientes.php">
+                    <i class="material-icons">assignment_ind</i>
+                    <p>Clientes</p>
+                </a>
+            </li>
+            <li <?php if($currentPage == "Proveedores"){echo "class=\"active\" ";}?>>
+                <a href="../proveedores/proveedores.php">
+                    <i class="material-icons">book</i>
+                    <p>Proveedores</p>
+                </a>
+            </li>
+            <li <?php if($currentPage == "Empleados"){echo "class=\"active\" ";}?>>
+                <a href="../empleados/empleados.php">
+                    <i class="material-icons">group</i>
+                    <p>Empleados</p>
+                </a>
+            </li>
+
+            <div class="separa"></div>
+
+            <li <?php if($currentPage == "Finanzas"){echo "class=\"active\" ";}?>>
+                <a href="../finanzas/finanzas.php">
+                    <i class="material-icons text-gray">assessment</i>
+                    <p>Finanzas</p>
+                </a>
+            </li>
+            <li <?php if($currentPage == "Reportes"){echo "class=\"active\" ";}?>>
+                <a href="../reportes/reportes.php">
+                    <i class="material-icons">content_paste</i>
+                    <p>Reportes</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

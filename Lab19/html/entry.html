@@ -1,0 +1,105 @@
+<br /><br />
+<div class="container shadow">
+    <div class="row">
+        <div class="col-sm-12">
+                <div class="text-center">
+                    <div class="display-4">Registrar Cliente</div>
+                    <br>
+                </div>
+        </div>
+    </div>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class='form-group'>
+                <label for="client_number"></label>
+                <div class="col-md-6">
+                    <input class="form-control" id="client_number" name="client[number]" size="30" type="number" placeholder="ID Cliente" onkeyup="showResult(this.value)"/>
+                    <div id="livesearch"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class='row'>
+
+            <div class='col-sm-4'>
+                <div class='form-group'>
+                    <label for="client_name"></label>
+                    <div class="col-md-12">
+                        <input class="form-control" id="client_name" name="client[name]" size="30" type="text" placeholder="Nombre"  onkeyup="showResult1(this.value)"/>
+                        <div id="livesearch1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-4'>
+                <div class='form-group'>
+                    <label for="client_paternal"></label>
+                    <div class="col-md-12">
+                        <input class="form-control" id="client_paternal" name="client[paternal]" size="30" type="text" placeholder="RFC" onkeyup="showResult2(this.value)"/>
+                        <div id="livesearch2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-4'>
+                <div class='form-group'>
+                    <label for="client_maternal"></label>
+                    <div class="col-md-12">
+                        <input class="form-control" id="client_maternal" name="client[maternal]" size="30" type="text" placeholder="Telefono" onkeyup="showResult3(this.value)"/>
+                        <div id="livesearch3"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class='row'>
+
+            <div class='col-sm-4'>
+                <div class='form-group'>
+                    <div class="col-md-12">
+                        <input class="form-control" id="client_birthday" name="client[birthday]" size="30" type="date" placeholder="Fecha de nacimiento" onkeyup="showResult4(this.value)"/>
+                        <div id="livesearch4"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class='col-sm-4'>
+              <div class='col-sm-4'>
+                  <div class='form-group'>
+                      <label for="client_name"></label>
+                      <div class="col-md-12">
+                          <input class="form-control" id="client_name" name="client[name]" size="30" type="text" placeholder="Correo" onkeyup="showResult1(this.value)"/>
+                          <div id="livesearch1"></div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <div class="col-md-12">
+                    <a class="btn btn-secondary py-0" href="menu.php"><i class="material-icons align-middle">arrow_back</i></a>
+
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-secondary mx-auto" name="actionTypeEntry" value="Registrar Cliente"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
