@@ -15,7 +15,7 @@ if($var_value == 1)
 
         <!-- Modal body -->
         <div class="modal-body">
-          <p><b>Numero de usuario ingresado: </b>'.$_POST["client"]["number"] .'</p>
+          <p><b>Numero de usuario ingresado: </b>'.$_POST["client"]["id"] .'</p>
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
@@ -48,10 +48,10 @@ else if($var_value == 2)
         <!-- Modal body -->
         <div class="modal-body">
           <p><b>Nombre(s): </b>'.$_POST["client"]["name"] .'</p>
-          <p><b>Apellido Paterno: </b>'.$_POST["client"]["paternal"].'</p>
-          <p><b>Apellido Materno: </b>'.$_POST["client"]["maternal"].'</p>
+          <p><b>Apellido Paterno: </b>'.$_POST["client"]["rfc"].'</p>
+          <p><b>Apellido Materno: </b>'.$_POST["client"]["tel"].'</p>
           <p><b>Fecha de Nacimiento: </b>'.$_POST["client"]["birthday"].'</p>
-          <p><b>Genero: </b>'.$_POST["client"]["gender"].'</p>
+          <p><b>Genero: </b>'.$_POST["client"]["correo"].'</p>
           <p><b>Grado de Estudio: </b>'.$_POST["client"]["client_grade"].'</p>
         </div>
         <!-- Modal footer -->

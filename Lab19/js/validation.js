@@ -1,9 +1,9 @@
 
-var NUMBER = /^[0-9]+$/;
+var ID = /^[0-9]+$/;
 var NAME = /^([ÑA-Zña-z']+(\s*))+$/;
+var RFC = /^[0-9]+$+[ÑA-Zña-z']/;
 var DATE = "DATE";
-var SCHOOLING = /^[1-9]$/;
-var GENDER = /^(M|F|O)$/;
+var CORREO = /^([ÑA-Zña-z']+(\s*))+$/;
 
 function test(type, subject){
     if(subject == null || type == null)
