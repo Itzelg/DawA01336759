@@ -1,0 +1,201 @@
+Laboratorio 18: Creación de Consultas Utilizando SQL con Funciones Agregadas y Sub-consultas
+Itzel Gil Porres
+
+	Materiales(Clave, Descripción, Costo, PorcentajeImpuesto) 
+	Proveedores(RFC, RazonSocial) 
+	Proyectos(Numero, Denominacion) 
+	Entregan(Clave, RFC, Numero, Fecha, Cantidad) 
+
+
+- La suma de las cantidades e importe total de todas las entregas realizadas durante el 97.
+
+SET DATEFORMAT dmy
+SELECT SUM(e.Cantidad) as 'Cantidad', (e.Cantidad*(m.Costo + m.PorcentajeImpuesto)) as 'Importe Total'
+FROM Entregan e, Materiales m
+WHERE e.clave=m.Clave
+AND e.fecha BETWEEN '01/01/1997' AND '31/12/1997'
+GROUP BY (e.Cantidad*(m.Costo + m.PorcentajeImpuesto))
+
+Resultado
+
+1 fila
+Cantidad    Importe Total
+546.00        45066.8400
+
+
+- Para cada proveedor, obtener la razón social del proveedor, número de entregas e importe total de las entregas realizadas. 
+
+SELECT p.RazonSocial, COUNT(e.Cantidad) as 'No. Entregas', SUM(e.Cantidad*(m.Costo + m.PorcentajeImpuesto)) as 'Importe Total'
+FROM Entregan e, Proveedores p, Materiales m
+WHERE  e.clave=m.Clave AND e.RFC = p.RFC
+GROUP BY p.RazonSocial --  (e.Cantidad*(m.Costo + m.PorcentajeImpuesto))
+ORDER BY SUM(e.Cantidad*(m.Costo + m.PorcentajeImpuesto)), COUNT(e.Cantidad)
+
+Resultado 
+
+8 filas
+Razon Social        No.Entregas         Importe Total
+Alvin            		15           	 788901.3600
+Comex            		15           	 794932.0600
+Cecoferre        		18           	 854306.7000
+
+
+
+- Por cada material obtener la clave y descripción del material, la cantidad total entregada, la mínima cantidad entregada, la máxima cantidad entregada, el importe total de las entregas de aquellos materiales en los que la cantidad promedio entregada sea mayor a 400. 
+
+SELECT m.Clave, m.Descripcion, SUM(e.Cantidad) as 'Cantidad total entregada', MIN(e.Cantidad) as 'Menor cantidad',
+      MAX(e.Cantidad) as 'Mayor de 400', SUM(e.Cantidad*(m.Costo + m.PorcentajeImpuesto)) as 'Importe Total'
+FROM Materiales m, Entregan e
+WHERE e.clave=m.Clave
+GROUP BY m.Descripcion, m.Clave
+HAVING  AVG(e.Cantidad) > 400
+ORDER BY m.Clave, SUM(e.Cantidad*(m.Costo + m.PorcentajeImpuesto))
+
+Resultado
+
+15 filas
+Clave 	Descripcion		Cantidad total entregada		Menor cantidad		Mayor de 400		Importe total
+1010	Varilla 4/32	1718.00							523.00				667.00				201040.3600
+1040	Varilla 3/18	1349.00							263.00				546.00				218645.9200
+1050	Varilla 4/34	1216.00							90.00				623.00				215353.6000
+
+ 
+
+- Para cada proveedor, indicar su razón social y mostrar la cantidad promedio de cada material entregado, detallando la clave y descripción del material, excluyendo aquellos proveedores para los que la cantidad promedio sea menor a 500. 
+
+SELECT p.RazonSocial, e.Clave, m.Descripcion, AVG(e.Cantidad) as 'Promedio por entrega'
+FROM Proveedores p, Entregan e, Materiales m
+WHERE  e.clave=m.Clave AND e.RFC = p.RFC
+GROUP BY p.RazonSocial, e.Clave, m.Descripcion
+HAVING AVG(e.Cantidad) >500
+ORDER BY p.RazonSocial, e.Clave
+
+Resultado
+
+3 filas
+ 
+
+- Mostrar en una solo consulta los mismos datos que en la consulta anterior pero para dos grupos de proveedores: aquellos para los que la cantidad promedio entregada es menor a 370 y aquellos para los que la cantidad promedio entregada sea mayor a 450.
+
+SELECT p.RazonSocial, e.Clave, m.Descripcion, AVG(e.Cantidad) as 'Promedio por entrega'
+FROM Proveedores p, Entregan e, Materiales m
+WHERE  e.clave=m.Clave AND e.RFC = p.RFC
+GROUP BY p.RazonSocial, e.Clave, m.Descripcion
+HAVING (AVG(e.Cantidad) < 370) OR (AVG(e.Cantidad) > 450)
+ORDER BY p.RazonSocial, e.Clave
+
+Resultado
+
+34 filas
+ 
+ 
+Utilizando la sentencia 
+INSERT INTO tabla VALUES (valorcolumna1, valorcolumna2, [...] , valorcolumnan) ; 
+ 
+Considerando que los valores de tipos CHAR y VARCHAR deben ir encerrados entre apóstrofes, los valores numéricos se escriben directamente y los de fecha, como '1-JAN-00' para 1o. de enero del 2000, inserta cinco nuevos materiales.
+Inserta cinco nuevos materiales.
+
+INSERT INTO Materiales VALUES (3839, 'Vidrio', 500.00, 3.998);
+INSERT INTO Materiales VALUES (1500, 'Tabiques', 200.00,1.90 );
+INSERT INTO Materiales VALUES (1650, 'Aluminio', 380.00, 3.00);
+INSERT INTO Materiales VALUES (1511, 'Madera X', 100.00, 2.38);
+INSERT INTO Materiales VALUES (1480, 'Tejas', 60.00, 2.5);
+
+
+Con base en lo que se explica en la lectura sobre consultas con roles y subconsultas, plantea y ejecuta las siguientes consultas: 
+ 
+-- Clave y descripción de los materiales que nunca han sido entregados. 
+
+SELECT m.Clave, m.Descripcion
+FROM Materiales m, Entregan e
+WHERE m.Clave NOT IN
+      (SELECT e.Clave
+ FROM Entregan e)
+GROUP BY m.Clave, m.Descripcion
+
+Resultado
+
+5 filas
+Clave 	Descripcion
+1480	Tejas
+1500	Tabiques
+1511	Madera X
+
+ 
+-- Razón social de los proveedores que han realizado entregas tanto al proyecto 'Vamos México' como al proyecto 'Querétaro Limpio'.
+
+SELECT prov.RazonSocial
+FROM Entregan e, Proveedores prov, Proyectos proy
+WHERE e.RFC=prov.RFC AND e.Numero=proy.Numero
+AND  proy.Denominacion IN
+(SELECT proy.Denominacion
+ FROM Entregan e, Proyectos proy
+ WHERE e.Numero=proy.Numero
+ AND proy.Denominacion = 'Vamos Mexico')
+
+AND proy.Denominacion IN
+    (SELECT proy.Denominacion
+ FROM Entregan e, Proyectos proy
+ WHERE e.Numero=proy.Numero
+ AND proy.Denominacion = 'Queretaro Limpio')
+
+Resultado
+
+0 filas
+ 
+-- Descripción de los materiales que nunca han sido entregados al proyecto 'CIT Yucatán'. 
+
+SELECT m.Descripcion
+FROM Materiales m, Entregan e, Proyectos p
+WHERE m.Clave =  e.Clave AND p.Numero = e.Numero
+AND Denominacion <> 'CIT Yucatan'
+GROUP BY m.Descripcion
+
+Resultado
+
+41 filas
+Descripcion
+Arena
+Block
+Cantera amarilla
+ 
+ 
+-- Razón social y promedio de cantidad entregada de los proveedores cuyo promedio de cantidad entregada es mayor al promedio de la cantidad entregada por el proveedor con el RFC 'VAGO780901'. 
+
+SELECT p.RazonSocial, AVG(e.Cantidad) as 'Promedio de cantidad entregada'
+FROM Proveedores p, Entregan e, Materiales m
+WHERE e.clave = m.Clave AND e.RFC = p.RFC
+GROUP BY p.RazonSocial
+HAVING  AVG(e.Cantidad) > (SELECT AVG(e.Cantidad)
+    	 FROM Entregan e)
+
+Resultado 
+
+6 filas
+ 
+ 
+-- RFC, razón social de los proveedores que participaron en el proyecto 'Infonavit Durango' y cuyas cantidades totales entregadas en el 2000 fueron mayores a las cantidades totales entregadas en el 2001.
+
+SET DATEFORMAT dmy
+SELECT prov.RFC, prov.RazonSocial
+FROM Proveedores prov, Proyectos proy, Entregan e
+WHERE e.RFC=prov.RFC AND e.Numero=proy.Numero
+AND Denominacion LIKE 'Infonavit Durango'
+GROUP BY prov.RFC, prov.RazonSocial
+HAVING
+ (SELECT SUM(e.Cantidad)
+  FROM Entregan e, Proyectos proy
+  WHERE e.Numero=proy.Numero
+  AND proy.Denominacion LIKE 'Infonavit Durango'
+  AND e.Fecha BETWEEN '01/01/2000' AND '31/12/2000')
+ >
+ (SELECT SUM(e.Cantidad)
+  FROM Entregan e, Proyectos proy
+  WHERE e.Numero=proy.Numero
+  AND proy.Denominacion LIKE 'Infonavit Durango'
+  AND e.Fecha BETWEEN '01/01/2001' AND '31/12/2001')
+
+Resultado
+
+0 filas
+
