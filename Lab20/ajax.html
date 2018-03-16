@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+  <html>
+
+    <title>Lab 20: jQuery</title>
+    <head>
+      <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset=UTF-8>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body class="is-preload">
+        <address>Itzel Gil Porres A01336759</address>
+          <section id="banner">
+				         <div class="inner">
+					              <h1>Lab 20: jQuery</h1>
+					                   <br/>
+				         </div>
+			   </section>
+
+            <section>
+							<div class="content">
+								<header>
+									<h4>Explica y elabora un diagrama sobre cómo funciona AJAX con jQuery.</h4>
+								</header>
+								<p>------- </p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<h4>¿Qué alternativas a jQuery existen?</h4>
+								</header>
+								<p>
+                  Podemos utilizar Javascritp puro, sin embargo, también existen librerías minimalistas, como Zepto.js, dirigida a entornos exigentes en rendimiento o XUI enfocada en aplicaciones móviles, también tenemos librerías selectoras como Sizzle o Qwery.
+								</p>
+							</div>
+						</section>
+            <section>
+                <h5>Referencias</h5>
+                    <p><a href="http://www.etnassoft.com/2011/03/28/alternativas-a-jquery/">Alternativas jQuery</a></p>
+                    <p><a href=""></a></p>
+            </section>
+
+<br> <br> <br> <br>
+<p> Los 2 componentes jQuery que utilizados, producen un cambio cuando mueves el puntero dentro de un elemento de HTML determinado, en este caso el botón de registrar y una función get para obtener datos del servidor. </p>
+
+        <form>
+          <div class="card-header" >
+                          <h4 class="title">Nuevo Empleado</h4>
+                          <p class="category">Los espacios marcados con * son obligatorios</p>
+
+        </form>
+        <div class="card-content">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Nombre(s)*</label>
+                                            <input id="userInput" name="nombreEmpleado" type="text" class="form-control" onkeyup="sendRequest()" />
+                                            <div id="ajaxResponse"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                            <button id="regis" type="submit" class="btn btn-primary pull-right btn-round">Registrar Empleado</button>
+
+        </div>
+        </div>
+
+
+
+        <script type="text/javascript" src="js/ajax.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      </body>
+</html>
