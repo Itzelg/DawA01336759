@@ -1,0 +1,42 @@
+Laboratorio 21: Manipulación de datos usando Stored Procedures
+Itzel Gil Porres A01336759
+
+¿Qué hace el primer bloque del código (bloque del IF)? 
+Checa si existe una tabla en la BD y si no existe la crea.
+
+¿Para qué sirve la instrucción GO? 
+Para asegurarnos de que un bloque de código se cumpla antes de que otro empiece a correr.
+
+¿Explica que recibe como parámetro este Procedimiento y qué tabla modifica?
+Recibe como parámetro la clave, descripción, costo e impuesto y modifica la tabla de Materiales.
+
+Explica en tu reporte qué recibe como parámetro este Procedimiento y qué hace
+Recibe:
+	@udescripcion VARCHAR(50),
+	@ucosto NUMERIC(8,2)
+y hace una busqueda dentro de materiales con un LIKE de u descripcion y donde el costo sea menor a ucosto
+
+Ejecutar Stored Procedures desde la aplicación cliente 
+
+CREATE PROCEDURE nuevoCliente (IN urfc char(12), IN unombre varchar(50), IN uempresa varchar(50), IN utelefono varchar(10), IN udireccion varchar(100), IN uciudad varchar(50), IN uemail varchar(50))
+BEGIN
+	INSERT INTO cliente (rfc, nombre, empresa, telefono, direccion, ciudad, email) VALUES (urfc, unombre, uempresa, utelefono, udireccion, uciudad, uemail);
+END
+
+
+¿Qué ventajas tienen el utilizar Store Procedures en una aplicación cliente-servidor? 
+Reducción en el coste de desarrollo y aumento en la fiabilidad
+Uso reducido de la red entre clientes y servidores
+
+¿Qué ventajas tiene utilizar SP en un proyecto?
+Seguridad, administración y mantenimiento centralizados para las rutinas comunes
+Mejora en la seguridad
+Mejora de las posibilidades de hardware y software
+
+
+Para reforzar el entendimiento de los SP, crea un SP que sea de utilidad en tu proyecto (en caso de usar otra tecnología, se deberá asumir). Incorpora dicho SP en tu reporte.
+
+CREATE PROCEDURE nuevoProveedor (IN urfc char(12), IN unombre varchar(50), IN uempresa varchar(50), IN utelefono varchar(10), IN udireccion varchar(100), IN uciudad varchar(50), IN uemail varchar(50))
+BEGIN
+	INSERT INTO proveedor (rfc, nombre, empresa, telefono, direccion, ciudad, email) VALUES (urfc, unombre, uempresa, utelefono, udireccion, uciudad, uemail);
+END
