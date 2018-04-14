@@ -1,0 +1,17 @@
+<?php require_once("../util.php"); ?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Service</title>
+        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <?php if (isset($id)) : ?>
+            <?php echo getEvento($id); ?>
+        <?php else: ?>
+            <?php echo getEventosTable(); ?>
+        <?php endif; ?>
+    </body>
+</html>

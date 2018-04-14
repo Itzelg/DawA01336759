@@ -1,0 +1,23 @@
+<h3>Operación 1</h3>
+<p>Muestra todos los eventos registrados en la base de datos. No recibe parámetros.</p>
+
+<?php
+    $id = 1;
+    $url = "https://daw-karyrs.c9users.io/lab24/service/public/"; //Route to the REST web service
+    $context = stream_context_create(['http'=>[]]);
+    $response = file_get_contents($url, null, $context);
+    //var_dump($response);
+    echo $response; 
+?>
+
+<h3>Operación 2</h3>
+<p>Muestra el evento que coincida con el id que se envía como parámetro.</p>
+
+<?php
+    $id = 3;
+    $url = "https://daw-karyrs.c9users.io/lab24/service/public/$id"; //Route to the REST web service
+    $context = stream_context_create(['http'=>[]]);
+    $response = file_get_contents($url, null, $context);
+    //var_dump($response); 
+    echo $response;
+?>
